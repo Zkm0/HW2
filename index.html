@@ -1,24 +1,56 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8">
-    <title>starter code</title>
-<link rel="stylesheet" type="text/css" href="site.css">
-</head>
+    <title> THREE BUTTONS </title>
+  </head>
+  <body>
+    <h1>THREE BUTTONS CLICKS</h1>
+    <p>Original Array: <span id="origArray"></span></p>
+    <p>
+      <input type="text" id="result1" readonly>
+      <button id="btn1">Square</button>
+    </p>
+    <p>
+      <input type="text" id="result2" readonly>
+      <button id="btn2">Cube</button>
+    </p>
+    <p>
+      <input type="text" id="result3" readonly>
+      <button id="btn3">Fourth Power</button>
+    </p>
+    <script>
+      const origArray = [2, 3, 4];
 
-<body>
-<h2>starter project</h2>
-<img src="https://www.dogandpuptown.com/wp-content/uploads/2018/11/Labrador-Puppies-1217.jpg" alt="Cute Labrador in the snow">
-<br>
-<button type="button" id="button1">Button</button>
-<div>
-    <br />
-    <input type="text" val="starting value" text="hello" id="textbox1" />
-    <br />
-</div>
+      function updateResults(values) {
+        document.getElementById('result1').value = values[0];
+        document.getElementById('result2').value = values[1];
+        document.getElementById('result3').value = values[2];
+      }
 
-<script src="main.js"></script>
-</body>
+      function square() {
+        const squaredArray = origArray.map(x => x * x);
+        updateResults(squaredArray);
+      }
 
+      function cube() {
+        const cubedArray = origArray.map(x => x * x * x);
+        updateResults(cubedArray);
+      }
+
+      function fourthPower() {
+        const fourthPowerArray = origArray.map(x => x * x * x * x);
+        updateResults(fourthPowerArray);
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('origArray').textContent = origArray.join(', ');
+        document.getElementById('btn1').onclick = square;
+        document.getElementById('btn2').addEventListener('click', function() {
+          cube();
+        });
+        document.getElementById('btn3').addEventListener('click', fourthPower);
+      });
+    </script>
+  </body>
 </html>
